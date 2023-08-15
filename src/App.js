@@ -10,6 +10,18 @@ function App() {
     { name: "Deli", favTime: "Gece", focus: "Backend" },
   ]);
 
+  function addMember(newMember) {
+    const newMemberList = [
+      ...memberList,
+      {
+        name: newMember.isim,
+        favTime: newMember.zaman,
+        focus: newMember.uzmanlik,
+      },
+    ];
+    setmemberList(newMemberList);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -20,7 +32,7 @@ function App() {
           </span>
         ))}
 
-        <Form />
+        <Form addMember={addMember} />
       </header>
     </div>
   );

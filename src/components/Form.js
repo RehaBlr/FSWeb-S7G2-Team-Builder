@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Form() {
+function Form(props) {
   const initialData = {
     isim: "",
     zaman: "",
@@ -16,6 +16,7 @@ function Form() {
   const submitFn = (e) => {
     console.log("submitFn çalıştı");
     e.preventDefault();
+    props.addMember(formData);
   };
 
   const resetFn = () => {
