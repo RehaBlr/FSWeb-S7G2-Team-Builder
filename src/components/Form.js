@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 function Form(props) {
   const initialData = {
     name: "",
-    favTime: "",
+    favTime: "Gece",
     focus: "",
   };
   const [formData, setFormData] = useState(initialData);
@@ -33,23 +33,36 @@ function Form(props) {
   };
   return (
     <form onSubmit={submitFn}>
-      <label htmlFor="isim">İsim: </label>
+      <label htmlFor="name">İsim: </label>
       <input
         type="text"
         name="name"
         value={formData.name}
         onChange={onChangeFn}
       />
+
       <br />
-      <label htmlFor="zaman">Favtime: </label>
-      <input
-        type="text"
-        name="favTime"
-        value={formData.favTime}
-        onChange={onChangeFn}
-      />
+      <label htmlFor="favTime">Favtime: </label>
+
+      <select name="favTime" onChange={onChangeFn} defaultValue="Gece">
+        <option value="-" disabled={true}>
+          Bir zaman seçin
+        </option>
+        <option
+          value="Gece"
+          // selected={formData.favTime === "Gece" ? true : false}
+        >
+          Gece
+        </option>
+        <option
+          value="Gündüz"
+          // selected={formData.favTime === "Gündüz" ? true : false}
+        >
+          Gündüz
+        </option>
+      </select>
       <br />
-      <label htmlFor="uzmanlik">Uzmanlığı: </label>
+      <label htmlFor="focus">Uzmanlığı: </label>
       <input
         type="text"
         name="focus"
