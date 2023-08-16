@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Form(props) {
   const initialData = {
-    isim: "",
-    zaman: "",
-    uzmanlik: "",
+    name: "",
+    favTime: "",
+    focus: "",
   };
   const [formData, setFormData] = useState(initialData);
+
+  useEffect(() => {
+    if (props.editingMember) {
+      setFormData(props.editingMember);
+    }
+  }, [props.editingMember]);
+
   const onChangeFn = (e) => {
     const editingField = e.target.name;
     const newValue = e.target.value;
@@ -27,24 +34,24 @@ function Form(props) {
       <label htmlFor="isim">İsim: </label>
       <input
         type="text"
-        name="isim"
-        value={formData.isim}
+        name="name"
+        value={formData.name}
         onChange={onChangeFn}
       />
       <br />
       <label htmlFor="zaman">Favtime: </label>
       <input
         type="text"
-        name="zaman"
-        value={formData.zaman}
+        name="favTime"
+        value={formData.favTime}
         onChange={onChangeFn}
       />
       <br />
       <label htmlFor="uzmanlik">Uzmanlığı: </label>
       <input
         type="text"
-        name="uzmanlik"
-        value={formData.uzmanlik}
+        name="focus"
+        value={formData.focus}
         onChange={onChangeFn}
       />
 
