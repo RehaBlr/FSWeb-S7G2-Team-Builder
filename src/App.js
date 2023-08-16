@@ -13,8 +13,16 @@ function App() {
   const [editOrder, setEditOrder] = useState(null);
 
   function addMember(newMember) {
-    const newMemberList = [...memberList, newMember];
-    setmemberList(newMemberList);
+    if (editOrder !== null) {
+      console.log("editorder", editOrder);
+      const newMemberList = [...memberList];
+      newMemberList[editOrder] = newMember;
+      setmemberList(newMemberList);
+      setEditOrder(null);
+    } else {
+      const newMemberList = [...memberList, newMember];
+      setmemberList(newMemberList);
+    }
   }
 
   const editHandler = (order) => {

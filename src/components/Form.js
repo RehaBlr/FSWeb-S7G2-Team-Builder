@@ -17,13 +17,15 @@ function Form(props) {
   const onChangeFn = (e) => {
     const editingField = e.target.name;
     const newValue = e.target.value;
-    setFormData({ ...formData, [editingField]: newValue });
+    let newFormData = { ...formData, [editingField]: newValue };
+    setFormData(newFormData);
   };
 
   const submitFn = (e) => {
     console.log("submitFn çalıştı");
     e.preventDefault();
     props.addMember(formData);
+    resetFn();
   };
 
   const resetFn = () => {
@@ -55,7 +57,9 @@ function Form(props) {
         onChange={onChangeFn}
       />
 
-      <button type="submit">Gönder</button>
+      <button type="submit">
+        {props.editingMember ? "Düzenle" : "Gönder"}
+      </button>
       <button type="reset" onClick={resetFn}>
         Sıfırla
       </button>
